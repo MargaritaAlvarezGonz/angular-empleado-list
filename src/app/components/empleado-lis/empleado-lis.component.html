@@ -19,12 +19,12 @@
     <div class="card-body">
       <table class="table">
         <thead>
-          <tr>
-            <th scope="col">Legajo</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Sexo</th>
-            <th scope="col">Salario</th>
+          <tr *ngFor="let empleado of listEmpleados">
+            <td>{{empleado.legajo}}</td>
+            <td>{{empleado.nombre}}</td>
+            <td>{{empleado.apellido}}</td>
+            <td>{{empleado.sexo}}</td>
+            <td>{{empleado.salario}}</td>
           </tr>
         </thead>
         <tbody>
