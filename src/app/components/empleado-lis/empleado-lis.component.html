@@ -1,44 +1,33 @@
 <div class="container mt-3">
-  <div class="card">
-    <div class="card-body">
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="sexo" id="todos" value="Masculino">
-        <label class="form-check-label" for="todos">Todos(5)</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="sexo" id="femenino" value="Femenino">
-        <label class="form-check-label" for="femenino">Femenino(5)</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="sexo" id="masculino" value="Masculino">
-        <label class="form-check-label" for="masculino">Masculino (2)</label>
-      </div>
-    </div>
-  </div>
+  <app-count-empleados [todos]="obtenerTotalEmpleados()"
+                      [masculino]="obtenerMasculinos()"
+                      [femenino]="obtenerFemeninos()"
+                      (countRadioButtonChange)="empleadoCountRadioButtonChange($event)"></app-count-empleados>
+
   <div class="card mt-3">
-    <div class="card-body">
-      <table class="table">
-        <thead>
-          <tr *ngFor="let empleado of listEmpleados">
-            <td>{{empleado.legajo}}</td>
-            <td>{{empleado.nombre}}</td>
-            <td>{{empleado.apellido}}</td>
-            <td>{{empleado.sexo}}</td>
-            <td>{{empleado.salario}}</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td >1</td>
-            <td>Margarita</td>
-            <td>Alvarez</td>
-            <td>Femenino</td>
-            <td>25000</td>
-          </tr>
-
-
-        </tbody>
-      </table>
-    </div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Legajo</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Sexo</th>
+              <th>Salario</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let empleado of listEmpleados">
+              <tr *ngIf="radioButtonSeleccionado == 'Todos' || radioButtonSeleccionado == empleado.sexo ">
+                <td>{{ empleado.legajo }}</td>
+                <td>{{ empleado.nombre }}</td>
+                <td>{{ empleado.apellido }}</td>
+                <td>{{ empleado.sexo }}</td>
+                <td>{{ empleado.salario}}&euro</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
   </div>
 </div>

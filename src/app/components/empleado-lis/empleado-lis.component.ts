@@ -15,9 +15,26 @@ export class EmpleadoLisComponent implements OnInit {
     {legajo: 5, nombre: 'Ajax', apellido: 'López', sexo: 'Masculino', salario: 1500 }
   ]
 
+  radioButtonSeleccionado = 'Todos'
+
   constructor() { }
 
   ngOnInit() {
   }
+  obtenerTotalEmpleados(): number{
+    return this.listEmpleados.length
+  }
+
+  obtenerFemeninos(): number{
+    return this.listEmpleados.filter(list => list.sexo === "Femenino").length
+  }
+  obtenerMasculinos(): number{
+    return this.listEmpleados.filter(list => list.sexo === "Masculino").length
+  }
+
+  empleadoCountRadioButtonChange(radioButtonSelec: string): void {
+    this.radioButtonSeleccionado = radioButtonSelec;
+    }
+
 
 }
